@@ -14,4 +14,5 @@ data class Meal
     @SerializedName("strInstructions") val instructions: String?,
     @SerializedName("strTags") val tags: String?,
     @SerializedName("strYoutube") val youtube: String?,
+    @Volatile var isFavorite: Boolean = false
 )
