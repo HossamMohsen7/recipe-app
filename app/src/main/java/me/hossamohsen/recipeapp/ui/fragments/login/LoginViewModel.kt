@@ -1,9 +1,11 @@
 package me.hossamohsen.recipeapp.ui.fragments.login
 
+import android.content.SharedPreferences
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.launch
+import me.hossamohsen.recipeapp.data.local.SharedPreferencesManager
 import me.hossamohsen.recipeapp.data.repository.UserRepository
 
 class LoginViewModel : ViewModel() {
@@ -25,6 +27,7 @@ class LoginViewModel : ViewModel() {
                 return@launch
             }
 
+            SharedPreferencesManager.saveString(SharedPreferencesManager.KEY_USER_ID, user.id.toString())
             userRepository.currentUser = user
             callback(true)
         }
