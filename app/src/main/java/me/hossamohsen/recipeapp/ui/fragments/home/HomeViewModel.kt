@@ -10,7 +10,7 @@ import me.hossamohsen.recipeapp.data.models.Meal
 import me.hossamohsen.recipeapp.data.repository.RecipesRepository
 
 class HomeViewModel : ViewModel() {
-    val recipesRepository = RecipesRepository.instance
+    private val recipesRepository = RecipesRepository.instance
 
     val isLoadingState = MutableStateFlow(true)
     val categoriesListState = MutableStateFlow(emptyList<Category>())
@@ -36,7 +36,9 @@ class HomeViewModel : ViewModel() {
             val recipes = mutableListOf<Meal>()
             selectedCategories.forEach { category ->
                 val meals = recipesRepository.filterByCategory(category.category)
-                recipes.addAll(meals.meals.map { it.copy(category = category.category) })
+                if(meals.meals != null) {
+                    recipes.addAll(meals.meals.map { it.copy(category = category.category) })
+                }
             }
 
             recipesListState.value = recipes

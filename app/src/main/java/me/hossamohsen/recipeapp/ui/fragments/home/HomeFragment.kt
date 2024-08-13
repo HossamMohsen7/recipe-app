@@ -10,6 +10,7 @@ import android.view.ViewGroup
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.DividerItemDecoration
 import com.google.android.material.chip.Chip
 import kotlinx.coroutines.launch
 import me.hossamohsen.recipeapp.R
@@ -75,10 +76,12 @@ class HomeFragment : Fragment() {
 
 
         val recyclerView = binding.rvHomeRecipes
-        val adapter = RecipesAdapter(emptyList()) {
-//            val action = HomeFragmentDirections.actionHomeFragmentToRecipeDetailFragment(it.idMeal)
-//            navController.navigate(action)
-        }
+        val dividerItemDecoration = DividerItemDecoration(
+            recyclerView.context,
+            DividerItemDecoration.VERTICAL
+        )
+        recyclerView.addItemDecoration(dividerItemDecoration)
+        val adapter = RecipesAdapter(emptyList(), {}, {})
         recyclerView.adapter = adapter
 
         lifecycleScope.launch {
