@@ -10,4 +10,12 @@
     <string name="register">Register</string>
     <string name="already_have_account">Already have an account?</string>
     <string name="full_name">Full Name</string>
+    <string name="about_creator">About Creator</string>
+    <string name="logout">Logout</string>
+    <string name="creator_name">Hossam Mohsen</string>
+    <string name="about_bio">Hossam Mohsen is a self-taught developer focused on software development in general. He is also specialized in back-end development and has worked on mobile and web apps. Hossam worked with many languages and platforms including: Android, Flutter, NodeJS, Java, Kotlin, and more.</string>
+    <string name="home">Home</string>
+    <string name="search">Search</string>
+    <string name="favourites">Favourites</string>
+    <string name="recipe_details">Recipe Details</string>
 </resources>

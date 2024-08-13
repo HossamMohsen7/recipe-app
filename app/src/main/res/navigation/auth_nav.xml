@@ -9,6 +9,7 @@
         android:id="@+id/splashFragment"
         android:name="me.hossamohsen.recipeapp.ui.fragments.splash.SplashFragment"
         android:label="fragment_splash"
+        android:noHistory="true"
         tools:layout="@layout/fragment_splash" >
         <action
             android:id="@+id/action_splashFragment_to_loginFragment"
@@ -18,7 +19,8 @@
         <action
             android:id="@+id/action_splashFragment_to_recipeActivity"
             app:destination="@id/recipeActivity"
-            app:popUpTo="@id/recipeActivity" />
+            app:popUpTo="@id/auth_nav"
+            app:popUpToInclusive="true" />
     </fragment>
     <fragment
         android:id="@+id/loginFragment"
@@ -30,7 +32,9 @@
             app:destination="@id/registerFragment" />
         <action
             android:id="@+id/action_loginFragment_to_recipeActivity"
-            app:destination="@id/recipeActivity" />
+            app:destination="@id/recipeActivity"
+            app:popUpTo="@id/auth_nav"
+            app:popUpToInclusive="true" />
     </fragment>
     <fragment
         android:id="@+id/registerFragment"

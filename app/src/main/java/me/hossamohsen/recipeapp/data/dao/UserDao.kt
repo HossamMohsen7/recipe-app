@@ -6,6 +6,7 @@ import androidx.room.Insert
 import androidx.room.Query
 import androidx.room.Update
 import me.hossamohsen.recipeapp.data.models.User
+import java.util.UUID
 
 @Dao
 interface UserDao {
@@ -20,7 +21,7 @@ interface UserDao {
     suspend fun deleteUser(user: User)
 
     @Query("SELECT * FROM user WHERE id = :id")
-    suspend fun getUserById(id: String): User?
+    suspend fun getUserById(id: UUID): User?
 
     @Query("SELECT * FROM user WHERE email = :email")
     suspend fun getUserByEmail(email: String): User?

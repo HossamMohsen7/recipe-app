@@ -3,6 +3,7 @@ package me.hossamohsen.recipeapp.data.repository
 import me.hossamohsen.recipeapp.data.dao.UserDao
 import me.hossamohsen.recipeapp.data.local.AppDatabase
 import me.hossamohsen.recipeapp.data.models.User
+import java.util.UUID
 
 class UserRepository(private val userDao: UserDao) {
 
@@ -18,7 +19,7 @@ class UserRepository(private val userDao: UserDao) {
         userDao.insertUser(user)
     }
 
-    suspend fun getUserById(id: String): User? {
+    suspend fun getUserById(id: UUID): User? {
         return userDao.getUserById(id)
     }
 

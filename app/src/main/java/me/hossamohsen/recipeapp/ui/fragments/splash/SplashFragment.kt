@@ -26,6 +26,7 @@ class SplashFragment : Fragment() {
                 is UserState.LoggedIn -> {
                     val action = SplashFragmentDirections.actionSplashFragmentToRecipeActivity()
                     navController.navigate(action)
+                    this@SplashFragment.activity?.finish()
                 }
 
                 is UserState.NotLoggedIn -> {
