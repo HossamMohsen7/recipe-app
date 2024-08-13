@@ -17,4 +17,5 @@
     <string name="home">Home</string>
     <string name="search">Search</string>
     <string name="favourites">Favourites</string>
+    <string name="recipe_details">Recipe Details</string>
 </resources>

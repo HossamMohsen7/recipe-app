@@ -43,6 +43,7 @@ class RecipeActivity : AppCompatActivity() {
 
         binding.bottomNavigation.setupWithNavController(navController)
         navController.addOnDestinationChangedListener { _, destination, _ ->
+            supportActionBar?.title = destination.label
             if(destination.id == R.id.aboutFragment) {
 
                 binding.bottomNavigation.visibility = View.GONE

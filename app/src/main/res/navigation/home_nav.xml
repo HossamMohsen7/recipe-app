@@ -8,7 +8,7 @@
     <fragment
         android:id="@+id/homeFragment"
         android:name="me.hossamohsen.recipeapp.ui.fragments.home.HomeFragment"
-        android:label="fragment_home"
+        android:label="@string/home"
         tools:layout="@layout/fragment_home" >
         <action
             android:id="@+id/action_homeFragment_to_aboutFragment"
@@ -20,12 +20,12 @@
     <fragment
         android:id="@+id/aboutFragment"
         android:name="me.hossamohsen.recipeapp.ui.fragments.about.AboutFragment"
-        android:label="fragment_about"
+        android:label="@string/about_creator"
         tools:layout="@layout/fragment_about" />
     <fragment
         android:id="@+id/favoriteFragment"
         android:name="me.hossamohsen.recipeapp.ui.fragments.favorite.FavoriteFragment"
-        android:label="fragment_favorite"
+        android:label="@string/favourites"
         tools:layout="@layout/fragment_favorite" >
         <action
             android:id="@+id/action_favoriteFragment_to_recipeDetailFragment"
@@ -34,7 +34,7 @@
     <fragment
         android:id="@+id/searchFragment"
         android:name="me.hossamohsen.recipeapp.ui.fragments.search.SearchFragment"
-        android:label="fragment_search"
+        android:label="@string/search"
         tools:layout="@layout/fragment_search" >
         <action
             android:id="@+id/action_searchFragment_to_recipeDetailFragment"
@@ -43,7 +43,7 @@
     <fragment
         android:id="@+id/recipeDetailFragment"
         android:name="me.hossamohsen.recipeapp.ui.fragments.recipedetail.RecipeDetailFragment"
-        android:label="fragment_recipe_detail"
+        android:label="@string/recipe_details"
         tools:layout="@layout/fragment_recipe_detail" >
         <argument
             android:name="id"
