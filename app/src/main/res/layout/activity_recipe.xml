@@ -25,8 +25,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:minHeight="?attr/actionBarSize"
-                app:menu="@menu/app_menu"
-                app:title="@string/app_name" />
+                app:menu="@menu/app_menu" />
 
         </com.google.android.material.appbar.AppBarLayout>
 

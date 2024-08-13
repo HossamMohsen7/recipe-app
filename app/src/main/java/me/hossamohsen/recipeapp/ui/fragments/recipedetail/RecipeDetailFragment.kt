@@ -1,4 +1,4 @@
-package me.hossamohsen.recipeapp.ui.fragments.home
+package me.hossamohsen.recipeapp.ui.fragments.recipedetail
 
 import androidx.fragment.app.viewModels
 import android.os.Bundle
@@ -8,9 +8,9 @@ import android.view.View
 import android.view.ViewGroup
 import me.hossamohsen.recipeapp.R
 
-class HomeFragment : Fragment() {
+class RecipeDetailFragment : Fragment() {
 
-    private val viewModel: HomeViewModel by viewModels()
+    private val viewModel: RecipeDetailViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -22,6 +22,6 @@ class HomeFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        return inflater.inflate(R.layout.fragment_home, container, false)
+        return inflater.inflate(R.layout.fragment_recipe_detail, container, false)
     }
 }
