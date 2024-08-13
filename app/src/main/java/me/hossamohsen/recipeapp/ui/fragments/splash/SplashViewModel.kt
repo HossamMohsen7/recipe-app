@@ -11,7 +11,7 @@ import me.hossamohsen.recipeapp.data.state.UserState
 
 class SplashViewModel : ViewModel() {
 
-    private val userRepository = UserRepository(AppDatabase.getInstance().userDao())
+    private val userRepository = UserRepository.instance
 
     fun checkUserLoggedIn(callback: (UserState) -> Unit) {
         viewModelScope.launch {
