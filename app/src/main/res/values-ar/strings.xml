@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">تطبيق الوصفات</string>
+    <string name="the_recipe_app">تطبيق الوصفات</string>
+    <string name="welcome">مرحبًا!</string>
+    <string name="email">الإيميل</string>
+    <string name="password">الباسورد</string>
+    <string name="login">دخول</string>
+    <string name="don_t_have_an_account">ليس لديك حساب؟</string>
+    <string name="register_now">سجل الآن</string>
+    <string name="register">تسجيل</string>
+    <string name="already_have_account">لديك حساب بالفعل؟</string>
+    <string name="full_name">الإسم بالكامل</string>
+</resources>
