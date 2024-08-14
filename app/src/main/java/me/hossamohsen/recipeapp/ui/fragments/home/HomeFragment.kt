@@ -17,6 +17,7 @@ import me.hossamohsen.recipeapp.R
 import me.hossamohsen.recipeapp.databinding.FragmentHomeBinding
 import me.hossamohsen.recipeapp.databinding.FragmentLoginBinding
 import me.hossamohsen.recipeapp.ui.adapters.RecipesAdapter
+import me.hossamohsen.recipeapp.ui.fragments.search.SearchFragmentDirections
 
 class HomeFragment : Fragment() {
 
@@ -33,6 +34,14 @@ class HomeFragment : Fragment() {
         }
     }
 
+    override fun onResume() {
+        super.onResume()
+        lifecycleScope.launch {
+            viewModel.loadCategories()
+            viewModel.loadRecipes()
+        }
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -46,7 +55,9 @@ class HomeFragment : Fragment() {
             DividerItemDecoration.VERTICAL
         )
         recyclerView.addItemDecoration(dividerItemDecoration)
-        val adapter = RecipesAdapter(emptyList(), {}, {
+        val adapter = RecipesAdapter(emptyList(), {
+            navController.navigate(HomeFragmentDirections.actionHomeFragmentToRecipeDetailFragment(it.id))
+        }, {
             viewModel.toggleFavorite(it) {
                 recyclerView.adapter?.notifyDataSetChanged()
             }
@@ -81,12 +92,12 @@ class HomeFragment : Fragment() {
                             chip.isChecked = true
                         }
                         chipGroup.addView(chip)
-                        chip.setOnClickListener {
-                            if(chip.isChecked) {
-                                viewModel.addCategoryFilter(category)
-                            } else {
-                                viewModel.removeCategoryFilter(category)
-                            }
+                    }
+
+                    chipGroup.setOnCheckedStateChangeListener { group, checkedIds ->
+                        val selectedChip = group.findViewById<Chip>(checkedIds.first())
+                        selectedChip?.let {
+                            viewModel.setSelectedCategory(it.text.toString())
                         }
                     }
                 }

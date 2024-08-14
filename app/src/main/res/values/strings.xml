@@ -21,4 +21,8 @@
     <string name="search_meals">Search meals</string>
     <string name="start_typing">Start typing to get meals!</string>
     <string name="no_meals">No meals found</string>
+    <string name="instructions">Instructions:</string>
+    <string name="read_less">Read less</string>
+    <string name="read_more">Read more</string>
+    <string name="view_video">View Video</string>
 </resources>

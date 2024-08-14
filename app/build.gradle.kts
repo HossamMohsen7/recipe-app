@@ -73,4 +73,6 @@ dependencies {
 
     ksp("androidx.room:room-compiler:$roomVersion")
     implementation("androidx.room:room-ktx:$roomVersion")
+
+    implementation("io.github.glailton.expandabletextview:expandabletextview:1.0.4")
 }

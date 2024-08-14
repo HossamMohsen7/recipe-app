@@ -16,6 +16,7 @@ import me.hossamohsen.recipeapp.R
 import me.hossamohsen.recipeapp.databinding.FragmentFavoriteBinding
 import me.hossamohsen.recipeapp.databinding.FragmentHomeBinding
 import me.hossamohsen.recipeapp.ui.adapters.RecipesAdapter
+import me.hossamohsen.recipeapp.ui.fragments.search.SearchFragmentDirections
 
 class FavoriteFragment : Fragment() {
 
@@ -28,16 +29,14 @@ class FavoriteFragment : Fragment() {
         super.onCreate(savedInstanceState)
 
         lifecycleScope.launch {
-            viewModel.isLoadingState.collect {
-                _binding?.apply {
-                    progressFavoriteRecipes.visibility = if(it) View.VISIBLE else View.GONE
-                    rvFavoriteRecipes.visibility = if(it) View.GONE else View.VISIBLE
-                }
-            }
-        }
-
-        lifecycleScope.launch {
            viewModel.loadRecipes()
+        }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        lifecycleScope.launch {
+            viewModel.loadRecipes()
         }
     }
 
@@ -55,12 +54,23 @@ class FavoriteFragment : Fragment() {
             DividerItemDecoration.VERTICAL
         )
         recyclerView.addItemDecoration(dividerItemDecoration)
-        val adapter = RecipesAdapter(emptyList(), {}, {
+        val adapter = RecipesAdapter(emptyList(), {
+            navController.navigate(FavoriteFragmentDirections.actionFavoriteFragmentToRecipeDetailFragment(it.id))
+        }, {
             viewModel.toggleFavorite(it) {
                 recyclerView.adapter?.notifyDataSetChanged()
             }
         })
         recyclerView.adapter = adapter
+
+        lifecycleScope.launch {
+            viewModel.isLoadingState.collect {
+                _binding?.apply {
+                    progressFavoriteRecipes.visibility = if(it) View.VISIBLE else View.GONE
+                    rvFavoriteRecipes.visibility = if(it) View.GONE else View.VISIBLE
+                }
+            }
+        }
 
         lifecycleScope.launch {
             viewModel.recipesListState.collect {

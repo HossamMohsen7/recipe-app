@@ -86,4 +86,13 @@ class HomeViewModel : ViewModel() {
             }
         }
     }
+
+    fun setSelectedCategory(toString: String) {
+        val category = categoriesListState.value.find { it.category == toString }
+        category?.let {
+            selectedCategories.clear()
+            selectedCategories.add(it)
+            loadRecipes()
+        }
+    }
 }
