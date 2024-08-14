@@ -8,11 +8,11 @@ data class Meal
     @SerializedName("strMealThumb") val thumb: String,
     @SerializedName("strMeal") val name: String,
 
-    @SerializedName("strDrinkAlternate") val drinkAlternate: String?,
-    @SerializedName("strCategory") val category: String?,
-    @SerializedName("strArea") val area: String?,
-    @SerializedName("strInstructions") val instructions: String?,
-    @SerializedName("strTags") val tags: String?,
-    @SerializedName("strYoutube") val youtube: String?,
+    @SerializedName("strDrinkAlternate") val drinkAlternate: String? = null,
+    @SerializedName("strCategory") val category: String? = null,
+    @SerializedName("strArea") val area: String? = null,
+    @SerializedName("strInstructions") val instructions: String? = null,
+    @SerializedName("strTags") val tags: String? = null,
+    @SerializedName("strYoutube") val youtube: String? = null,
     @Volatile var isFavorite: Boolean = false
 )

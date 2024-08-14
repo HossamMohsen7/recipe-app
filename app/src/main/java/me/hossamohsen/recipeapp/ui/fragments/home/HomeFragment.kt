@@ -29,6 +29,37 @@ class HomeFragment : Fragment() {
         super.onCreate(savedInstanceState)
 
         lifecycleScope.launch {
+            viewModel.loadCategories()
+        }
+    }
+
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
+        _binding = FragmentHomeBinding.inflate(inflater, container, false)
+        navController = findNavController()
+
+        val recyclerView = binding.rvHomeRecipes
+        val dividerItemDecoration = DividerItemDecoration(
+            recyclerView.context,
+            DividerItemDecoration.VERTICAL
+        )
+        recyclerView.addItemDecoration(dividerItemDecoration)
+        val adapter = RecipesAdapter(emptyList(), {}, {
+            viewModel.toggleFavorite(it) {
+                recyclerView.adapter?.notifyDataSetChanged()
+            }
+        })
+        recyclerView.adapter = adapter
+
+        lifecycleScope.launch {
+            viewModel.recipesListState.collect {
+                adapter.setRecipes(it)
+            }
+        }
+
+        lifecycleScope.launch {
             viewModel.isLoadingState.collect {
                 _binding?.apply {
                     progressHomeRecipes.visibility = if(it) View.VISIBLE else View.GONE
@@ -40,7 +71,7 @@ class HomeFragment : Fragment() {
         lifecycleScope.launch {
             viewModel.categoriesListState.collect {
                 _binding?.apply {
-                   val chipGroup = binding.homeChipGroup
+                    val chipGroup = binding.homeChipGroup
                     chipGroup.removeAllViews()
                     it.forEachIndexed { i, category ->
                         val chip = Chip(chipGroup.context)
@@ -59,34 +90,6 @@ class HomeFragment : Fragment() {
                         }
                     }
                 }
-            }
-        }
-
-        lifecycleScope.launch {
-            viewModel.loadCategories()
-        }
-    }
-
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        _binding = FragmentHomeBinding.inflate(inflater, container, false)
-        navController = findNavController()
-
-
-        val recyclerView = binding.rvHomeRecipes
-        val dividerItemDecoration = DividerItemDecoration(
-            recyclerView.context,
-            DividerItemDecoration.VERTICAL
-        )
-        recyclerView.addItemDecoration(dividerItemDecoration)
-        val adapter = RecipesAdapter(emptyList(), {}, {})
-        recyclerView.adapter = adapter
-
-        lifecycleScope.launch {
-            viewModel.recipesListState.collect {
-                adapter.setRecipes(it)
             }
         }
 

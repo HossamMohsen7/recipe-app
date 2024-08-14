@@ -12,8 +12,6 @@ import me.hossamohsen.recipeapp.databinding.ItemRecipeBinding
 class RecipesAdapter(private var recipes: List<Meal>, private val onItemClick: (item: Meal) -> Unit, private val onFavoriteClick: (item: Meal) -> Unit) : RecyclerView.Adapter<RecipesAdapter.ViewHolder>() {
     class ViewHolder(private val itemBinding: ItemRecipeBinding) : RecyclerView.ViewHolder(itemBinding.root) {
         fun bind(recipe: Meal, onItemClick: (item: Meal) -> Unit, onFavoriteClick: (item: Meal) -> Unit) {
-            Log.i("RecipesAdapter", "bind: $recipe")
-
             itemBinding.tvRecipeName.text = recipe.name
             itemBinding.tvRecipeCategory.text = recipe.category
             Glide.with(itemBinding.root)
