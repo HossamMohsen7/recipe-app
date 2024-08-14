@@ -18,4 +18,7 @@
     <string name="search">Search</string>
     <string name="favourites">Favourites</string>
     <string name="recipe_details">Recipe Details</string>
+    <string name="search_meals">Search meals</string>
+    <string name="start_typing">Start typing to get meals!</string>
+    <string name="no_meals">No meals found</string>
 </resources>

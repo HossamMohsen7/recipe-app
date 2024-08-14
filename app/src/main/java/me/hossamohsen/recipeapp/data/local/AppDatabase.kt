@@ -4,12 +4,15 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import me.hossamohsen.recipeapp.data.dao.FavoriteDao
 import me.hossamohsen.recipeapp.data.dao.UserDao
+import me.hossamohsen.recipeapp.data.models.FavoriteEntry
 import me.hossamohsen.recipeapp.data.models.User
 
-@Database(entities = [User::class], version = 1)
+@Database(entities = [User::class, FavoriteEntry::class], version = 2)
 abstract class AppDatabase : RoomDatabase() {
     abstract fun userDao(): UserDao
+    abstract fun favoriteDao(): FavoriteDao
 
     companion object {
         private const val DATABASE_NAME = "app_database"
