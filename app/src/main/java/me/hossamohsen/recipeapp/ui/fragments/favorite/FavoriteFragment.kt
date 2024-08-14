@@ -29,16 +29,14 @@ class FavoriteFragment : Fragment() {
         super.onCreate(savedInstanceState)
 
         lifecycleScope.launch {
-            viewModel.isLoadingState.collect {
-                _binding?.apply {
-                    progressFavoriteRecipes.visibility = if(it) View.VISIBLE else View.GONE
-                    rvFavoriteRecipes.visibility = if(it) View.GONE else View.VISIBLE
-                }
-            }
-        }
-
-        lifecycleScope.launch {
            viewModel.loadRecipes()
+        }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        lifecycleScope.launch {
+            viewModel.loadRecipes()
         }
     }
 
@@ -64,6 +62,15 @@ class FavoriteFragment : Fragment() {
             }
         })
         recyclerView.adapter = adapter
+
+        lifecycleScope.launch {
+            viewModel.isLoadingState.collect {
+                _binding?.apply {
+                    progressFavoriteRecipes.visibility = if(it) View.VISIBLE else View.GONE
+                    rvFavoriteRecipes.visibility = if(it) View.GONE else View.VISIBLE
+                }
+            }
+        }
 
         lifecycleScope.launch {
             viewModel.recipesListState.collect {

@@ -34,6 +34,14 @@ class HomeFragment : Fragment() {
         }
     }
 
+    override fun onResume() {
+        super.onResume()
+        lifecycleScope.launch {
+            viewModel.loadCategories()
+            viewModel.loadRecipes()
+        }
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -84,12 +92,12 @@ class HomeFragment : Fragment() {
                             chip.isChecked = true
                         }
                         chipGroup.addView(chip)
-                        chip.setOnClickListener {
-                            if(chip.isChecked) {
-                                viewModel.addCategoryFilter(category)
-                            } else {
-                                viewModel.removeCategoryFilter(category)
-                            }
+                    }
+
+                    chipGroup.setOnCheckedStateChangeListener { group, checkedIds ->
+                        val selectedChip = group.findViewById<Chip>(checkedIds.first())
+                        selectedChip?.let {
+                            viewModel.setSelectedCategory(it.text.toString())
                         }
                     }
                 }

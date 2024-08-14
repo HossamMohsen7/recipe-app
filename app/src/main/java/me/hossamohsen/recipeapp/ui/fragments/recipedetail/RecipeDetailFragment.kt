@@ -1,5 +1,7 @@
 package me.hossamohsen.recipeapp.ui.fragments.recipedetail
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -56,7 +58,15 @@ class RecipeDetailFragment : Fragment() {
                         if (it.isFavorite) R.drawable.baseline_favorite_24 else R.drawable.baseline_favorite_border_24
                     )
 
-                    binding.btnDetailVideo.setOnClickListener {
+
+                    if(it.youtube.isNullOrEmpty()) {
+                        binding.btnDetailVideo.visibility = View.GONE
+                    } else {
+                        binding.btnDetailVideo.visibility = View.VISIBLE
+                        binding.btnDetailVideo.setOnClickListener { _ ->
+                            val intent = Intent(Intent.ACTION_VIEW, Uri.parse(it.youtube))
+                            startActivity(intent)
+                        }
                     }
                 }
             }
