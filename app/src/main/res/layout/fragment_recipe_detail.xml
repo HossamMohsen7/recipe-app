@@ -1,13 +1,141 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:expandableTextView="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.fragments.recipedetail.RecipeDetailFragment">
 
-    <TextView
+    <ProgressBar
+        android:id="@+id/progressBarDetail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:visibility="visible"
+        tools:visibility="gone" />
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/clDetail"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="Hello" />
+        android:visibility="gone"
+        tools:visibility="visible">
 
+        <ImageView
+            android:id="@+id/ivDetailImage"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:src="@tools:sample/avatars" />
+
+        <TextView
+            android:id="@+id/tvDetailTitle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:ellipsize="marquee"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/ivDetailImage"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Best Recipe Ever" />
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/chipDetailCategory"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            app:layout_constraintStart_toEndOf="@+id/ivDetailImage"
+            app:layout_constraintTop_toBottomOf="@+id/tvDetailTitle"
+            tools:text="Beef" />
+
+
+        <ImageView
+            android:id="@+id/ivDetailFavorite"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="24dp"
+            app:layout_constraintBottom_toBottomOf="@+id/chipDetailCategory"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/chipDetailCategory"
+            app:srcCompat="@drawable/baseline_favorite_border_24" />
+
+        <View
+            android:id="@+id/divider"
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="24dp"
+            android:background="?android:attr/listDivider"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/ivDetailImage" />
+
+        <TextView
+            android:id="@+id/textView7"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="24dp"
+            android:text="@string/instructions"
+            android:textSize="18sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/divider" />
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="16dp"
+            app:layout_constraintBottom_toTopOf="@+id/btnDetailVideo"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView7">
+
+            <io.github.glailton.expandabletextview.ExpandableTextView
+                android:id="@+id/tvDetailInstructions"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                app:expandType="layout"
+                expandableTextView:animDuration="500"
+                expandableTextView:collapsedLines="4"
+                expandableTextView:isExpanded="false"
+                expandableTextView:readLessText="@string/read_less"
+                expandableTextView:readMoreText="@string/read_more"
+                expandableTextView:textMode="line"
+                tools:text="Hello Recipe\nHello RecipeHello Recipe\nHello RecipeHello Recipe\nHello RecipeHello Recipe\nHello RecipeHello Recipe\nHello RecipeHello Recipe\nHello RecipeHello Recipe\nHello RecipeHello Recipe\nHello Recipe" />
+
+        </ScrollView>
+
+
+        <Button
+            android:id="@+id/btnDetailVideo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="32dp"
+            android:text="@string/view_video"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvDetailInstructions" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>

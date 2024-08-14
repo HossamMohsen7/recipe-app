@@ -44,18 +44,16 @@ class RecipeActivity : AppCompatActivity() {
         binding.bottomNavigation.setupWithNavController(navController)
         navController.addOnDestinationChangedListener { _, destination, _ ->
             supportActionBar?.title = destination.label
-            if(destination.id == R.id.aboutFragment) {
-
+            if (destination.id == R.id.aboutFragment || destination.id == R.id.recipeDetailFragment) {
                 binding.bottomNavigation.visibility = View.GONE
             } else {
-
                 binding.bottomNavigation.visibility = View.VISIBLE
             }
         }
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(me.hossamohsen.recipeapp.R.menu.app_menu, menu)
+        menuInflater.inflate(R.menu.app_menu, menu)
         return true
     }
 
@@ -66,6 +64,7 @@ class RecipeActivity : AppCompatActivity() {
                 navController.navigate(action)
                 true
             }
+
             R.id.menu_logout -> {
                 //logout
                 SharedPreferencesManager.saveString(SharedPreferencesManager.KEY_USER_ID, null)
@@ -75,6 +74,7 @@ class RecipeActivity : AppCompatActivity() {
                 finish()
                 true
             }
+
             else -> super.onOptionsItemSelected(item)
         }
     }

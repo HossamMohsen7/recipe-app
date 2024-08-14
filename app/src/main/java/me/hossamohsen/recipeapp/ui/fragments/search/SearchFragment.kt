@@ -61,7 +61,9 @@ class SearchFragment : Fragment() {
             DividerItemDecoration.VERTICAL
         )
         recyclerView.addItemDecoration(dividerItemDecoration)
-        val adapter = RecipesAdapter(emptyList(), {}, {
+        val adapter = RecipesAdapter(emptyList(), {
+            navController.navigate(SearchFragmentDirections.actionSearchFragmentToRecipeDetailFragment(it.id))
+        }, {
             viewModel.toggleFavorite(it) {
                 recyclerView.adapter?.notifyDataSetChanged()
             }
